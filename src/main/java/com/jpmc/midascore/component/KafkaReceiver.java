@@ -5,11 +5,15 @@ import com.jpmc.midascore.foundation.Transaction;
 import org.springframework.stereotype.Component;
 
 @Component
-public class KafkaListenr {
+public class KafkaReceiver {
+    private final HandleTransaction1 handler;
+
+    public KafkaReceiver(HandleTransaction1 handler) {
+        this.handler = handler;
+    }
 
     @KafkaListener(topics = "${general.kafka-topic}", groupId="midas")
     public void listen(Transaction transaction) {
-        System.out.println(transaction);
+        handler.transactionHandler(transaction);
     }
-    
 }
