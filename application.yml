@@ -1,2 +1,15 @@
+spring:
+    kafka:
+      consumer:
+        auto-offset-reset: earliest
+        group-id: midas
+        key-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+        value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+        properties:
+          spring.json.trusted.packages: '*'
+      producer:
+        key-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+        value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
 general:
-  kafka-topic: forage-midas
+  kafka-topic: "transaction"
