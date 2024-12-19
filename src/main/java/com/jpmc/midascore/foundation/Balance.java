@@ -1,17 +1,18 @@
 package com.jpmc.midascore.foundation;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.springframework.beans.factory.annotation.Value;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 
 public class Balance {
+    private long userId;
     private float amount;
 
     public Balance() {
     }
 
-    public Balance(float amount) {
+    public Balance(long userId, float amount) {
+        this.userId = userId;
         this.amount = amount;
     }
 
