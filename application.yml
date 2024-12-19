@@ -1,0 +1,49 @@
+spring:
+  application:
+    name: "forage-kafka-service"
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:testdb
+    username: test
+    password: password
+    show-sql: true
+  h2:
+    console:
+      enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+  kafka:
+    bootstrap-servers:
+      - localhost:9092
+server:
+  port: 33400
+#kafka:
+#  key-deserializer: "org.apache.kafka.common.serialization.StringDeserializer"
+#  value-deserializer: "org.apache.kafka.common.serialization.StringDeserializer"
+general:
+  kafka-topic: "test-topic"
+  kafka-broker: "localhost:9092"
+  kafka-group-id: "test-group"
+  kafka-dead-letter-topic: "dead-letter-topic"
+  kafka-producer-timeout: 1000
+  kafka-consumer-timeout: 1000
+bootstrap:
+  servers: "localhost:9092"
+  group-id: "test-group"
+  topic: "test-topic"
+
+
+logging:
+  level:
+    root: error
+    sql: error
+    com.jpmc.midascore: trace
+    com.jpmc.midascore.service.TransactionServiceImpl: info
+    test: info
+    org:
+      apache:
+        kafka: error
+        springframework:
+          web: error
+          kafka: error
