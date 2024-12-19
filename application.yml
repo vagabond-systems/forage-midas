@@ -18,9 +18,9 @@ spring:
       - localhost:9092
 server:
   port: 33400
-#kafka:
-#  key-deserializer: "org.apache.kafka.common.serialization.StringDeserializer"
-#  value-deserializer: "org.apache.kafka.common.serialization.StringDeserializer"
+kafka:
+  key-deserializer: "org.apache.kafka.common.serialization.StringDeserializer"
+  value-deserializer: "org.apache.kafka.common.serialization.StringDeserializer"
 general:
   kafka-topic: "test-topic"
   kafka-broker: "localhost:9092"

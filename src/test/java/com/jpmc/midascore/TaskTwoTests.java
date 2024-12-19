@@ -1,5 +1,6 @@
 package com.jpmc.midascore;
 
+import com.jpmc.midascore.producer.KafkaProducer;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,10 +14,9 @@ import org.springframework.test.context.TestPropertySource;
 
 @SpringBootTest
 @DirtiesContext
+@EnableKafka  // Ensure Kafka listener functionality is enabled
+@TestPropertySource(properties = "spring.kafka.bootstrap-servers=localhost:9092")
 @EmbeddedKafka(partitions = 1, brokerProperties = {"listeners=PLAINTEXT://localhost:9092", "port=9092"})
-@EnableKafka
-//@KafkaListener(topics = "${kafka.topic.name}", groupId = "midas-core-group")
-@TestPropertySource(properties = "kafka.topic.name=transactions-topic")
 class TaskTwoTests {
     static final Logger logger = LoggerFactory.getLogger(TaskTwoTests.class);
 
