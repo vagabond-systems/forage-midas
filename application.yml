@@ -1,0 +1,3 @@
+general:
+  kafka-topic: transactions-topic
+  kafka-bootstrap-servers: localhost:9092
