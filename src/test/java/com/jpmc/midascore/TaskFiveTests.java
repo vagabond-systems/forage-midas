@@ -1,5 +1,7 @@
 package com.jpmc.midascore;
 
+import com.jpmc.midascore.component.FileLoader;
+import com.jpmc.midascore.component.UserPopulator;
 import com.jpmc.midascore.foundation.Balance;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;

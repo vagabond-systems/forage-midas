@@ -1,0 +1,3 @@
+2024-12-28 14:15:24.802026-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_RECORD" not found (this database is empty); SQL statement:
+INSERT INTO user_record (name, balance) VALUES ('Waldorf', 1000) [42104-224]

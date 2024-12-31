@@ -1,5 +1,9 @@
 package com.jpmc.midascore;
 
+import com.jpmc.midascore.component.FileLoader;
+import com.jpmc.midascore.component.UserPopulator;
+import com.jpmc.midascore.repository.TransactionRecordRepository;
+import com.jpmc.midascore.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +19,13 @@ public class TaskThreeTests {
     static final Logger logger = LoggerFactory.getLogger(TaskThreeTests.class);
 
     @Autowired
+    private TransactionRecordRepository transactionRecordRepository;  // Assuming this repository is set up
+
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
     private KafkaProducer kafkaProducer;
 
     @Autowired
@@ -26,6 +37,9 @@ public class TaskThreeTests {
     @Test
     void task_three_verifier() throws InterruptedException {
         userPopulator.populate();
+
+        //userRepository.findAll().forEach(user -> System.out.println("Users from test file: " + user));
+
         String[] transactionLines = fileLoader.loadStrings("/test_data/mnbvcxz.vbnm");
         for (String transactionLine : transactionLines) {
             kafkaProducer.send(transactionLine);
@@ -38,6 +52,7 @@ public class TaskThreeTests {
         logger.info("----------------------------------------------------------");
         logger.info("use your debugger to find out what waldorf's balance is after all transactions are processed");
         logger.info("kill this test once you find the answer");
+
         while (true) {
             Thread.sleep(20000);
             logger.info("...");
