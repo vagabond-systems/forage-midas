@@ -53,6 +53,14 @@ public class TaskThreeTests {
         logger.info("use your debugger to find out what waldorf's balance is after all transactions are processed");
         logger.info("kill this test once you find the answer");
 
+        // Print Waldorf's final balance after all transactions are processed
+        UserRecord waldorf = userRepository.findByName("waldorf");  // Assuming you have a method to find by name
+        if (waldorf != null) {
+            System.out.println("Final balance for Waldorf: " + waldorf.getBalance());
+        } else {
+            System.out.println("Waldorf not found in the database.");
+        }
+
         while (true) {
             Thread.sleep(20000);
             logger.info("...");
