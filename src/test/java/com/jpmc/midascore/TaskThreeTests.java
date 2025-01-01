@@ -2,6 +2,7 @@ package com.jpmc.midascore;
 
 import com.jpmc.midascore.component.FileLoader;
 import com.jpmc.midascore.component.UserPopulator;
+import com.jpmc.midascore.entity.UserRecord;
 import com.jpmc.midascore.repository.TransactionRecordRepository;
 import com.jpmc.midascore.repository.UserRepository;
 import org.junit.jupiter.api.Test;
@@ -19,11 +20,10 @@ public class TaskThreeTests {
     static final Logger logger = LoggerFactory.getLogger(TaskThreeTests.class);
 
     @Autowired
-    private TransactionRecordRepository transactionRecordRepository;  // Assuming this repository is set up
-
+    private UserRepository userRepository;
 
     @Autowired
-    private UserRepository userRepository;
+    private TransactionRecordRepository transactionRecordRepository;  // Assuming this repository is set up
 
     @Autowired
     private KafkaProducer kafkaProducer;
@@ -52,11 +52,12 @@ public class TaskThreeTests {
         logger.info("----------------------------------------------------------");
         logger.info("use your debugger to find out what waldorf's balance is after all transactions are processed");
         logger.info("kill this test once you find the answer");
+        logger.info("----------------------------------------------------------");
 
         // Print Waldorf's final balance after all transactions are processed
-        UserRecord waldorf = userRepository.findByName("waldorf");  // Assuming you have a method to find by name
+        UserRecord waldorf = userRepository.findByName("waldorf");
         if (waldorf != null) {
-            System.out.println("Final balance for Waldorf: " + waldorf.getBalance());
+            System.out.println("Final balance for Waldorf: " + Math.floor(waldorf.getBalance()));
         } else {
             System.out.println("Waldorf not found in the database.");
         }
