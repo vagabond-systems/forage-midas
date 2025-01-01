@@ -50,13 +50,5 @@ public class TransactionService {
             System.out.println("Transaction discarded: " + transaction);
         }
 
-
-        // Print Waldorf's final balance after all transactions are processed
-        UserRecord waldorf = userRepository.findByName("waldorf");  // Assuming you have a method to find by name
-        if (waldorf != null) {
-            System.out.println("Final balance for Waldorf: " + waldorf.getBalance());
-        } else {
-            System.out.println("Waldorf not found in the database.");
-        }
     }
 }
