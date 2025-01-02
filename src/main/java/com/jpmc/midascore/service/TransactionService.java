@@ -2,6 +2,7 @@ package com.jpmc.midascore.service;
 
 import com.jpmc.midascore.entity.TransactionRecord;
 import com.jpmc.midascore.entity.UserRecord;
+import com.jpmc.midascore.foundation.Balance;
 import com.jpmc.midascore.foundation.Incentive;
 import com.jpmc.midascore.foundation.Transaction;
 import com.jpmc.midascore.repository.TransactionRecordRepository;
@@ -9,6 +10,8 @@ import com.jpmc.midascore.repository.UserRepository;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.Optional;
 
 @Service
 public class TransactionService {
@@ -46,10 +49,9 @@ public class TransactionService {
 
             // Try and catch when calling the api
             float incentiveAmount = 0;
-            try{
+            try {
                 incentiveAmount = getIncentiveApi(transaction).getAmount();
-            }
-            catch
+            } catch
             (Exception e) {
                 System.out.println("Error occurred while calling Incentive Api " + e);
             }
@@ -65,9 +67,21 @@ public class TransactionService {
         }
     }
 
-    public Incentive getIncentiveApi(Transaction transaction){
+    public Incentive getIncentiveApi(Transaction transaction) {
         String url = "http://localhost:8080/incentive";
-        return restTemplate.postForObject(url, transaction, Incentive.class );
+        return restTemplate.postForObject(url, transaction, Incentive.class);
     }
 
+    public Balance getBalance(Long userId) {
+
+        Optional<UserRecord> user = userRepository.findById(userId);
+        float finalBalance = 0;
+
+        if (user.isPresent()) {
+             finalBalance = user.get().getBalance();
+            return new Balance(finalBalance);
+        } else {
+            return new Balance(finalBalance);
+        }
+    }
 }
