@@ -1,4 +1,4 @@
-package com.jpmc.midascore;
+package com.jpmc.midascore.component;
 
 import org.springframework.stereotype.Component;
 import org.testcontainers.shaded.org.apache.commons.io.IOUtils;
