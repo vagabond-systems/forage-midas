@@ -9,6 +9,7 @@ Midas Core is a Spring Boot-based component of the Midas system, designed to han
 	•	H2 Database 2.2.224
 	•	Maven
 
+
  Prerequisites
 
 	•	Java 17
