@@ -1,5 +1,4 @@
 Midas Core Integration
-
 Midas Core is a Spring Boot-based component of the Midas system, designed to handle financial transactions efficiently. It integrates Kafka, SQL databases, and REST APIs to provide seamless transaction processing, validation, and storage. This project emphasizes scalability, reliability, and maintainability to meet high-stakes financial requirements.
 
 🛠️ Tech Stack
