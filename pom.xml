@@ -17,7 +17,17 @@
 		<java.version>17</java.version>
 	</properties>
 	<dependencies>
-	</dependencies>
+    		<dependency>
+	        <groupId>jakarta.persistence</groupId>
+	        <artifactId>jakarta.persistence-api</artifactId>
+	        <version>2.2.3</version>
+	    </dependency>
+	    <dependency>
+	        <groupId>com.fasterxml.jackson.core</groupId>
+	        <artifactId>jackson-annotations</artifactId>
+	        <version>2.12.3</version>
+	    </dependency>
+</dependencies>
 
 	<build>
 		<plugins>
