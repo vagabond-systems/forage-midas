@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
+import java.util.concurrent.TimeUnit;
+
 @Component
 public class KafkaProducer {
     private final String topic;
@@ -17,6 +19,26 @@ public class KafkaProducer {
 
     public void send(String transactionLine) {
         String[] transactionData = transactionLine.split(", ");
-        kafkaTemplate.send(topic, new Transaction(Long.parseLong(transactionData[0]), Long.parseLong(transactionData[1]), Float.parseFloat(transactionData[2])));
+        Transaction transaction = new Transaction(
+                Long.parseLong(transactionData[0]),
+                Long.parseLong(transactionData[1]),
+                Float.parseFloat(transactionData[2]));
+
+        for (int attempt = 1; attempt <= 3; attempt++) {
+            try {
+                kafkaTemplate.send(topic, transaction).get(10, TimeUnit.SECONDS);
+                return;
+            } catch (Exception ex) {
+                if (attempt == 3) {
+                    throw new IllegalStateException("Unable to publish transaction to Kafka topic " + topic, ex);
+                }
+                try {
+                    Thread.sleep(500L * attempt);
+                } catch (InterruptedException interruptedException) {
+                    Thread.currentThread().interrupt();
+                    throw new IllegalStateException("Interrupted while retrying Kafka send", interruptedException);
+                }
+            }
+        }
     }
 }

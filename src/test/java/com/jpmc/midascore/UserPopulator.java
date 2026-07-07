@@ -18,7 +18,7 @@ public class UserPopulator {
         for (String userLine : userLines) {
             String[] userData = userLine.split(", ");
             UserRecord user = new UserRecord(userData[0], Float.parseFloat(userData[1]));
-            databaseConduit.save(user);
+            databaseConduit.saveUser(user);
         }
     }
 }
