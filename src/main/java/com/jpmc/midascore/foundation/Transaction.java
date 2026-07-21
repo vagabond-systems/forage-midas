@@ -1,12 +1,17 @@
 package com.jpmc.midascore.foundation;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Transaction {
+
     private long senderId;
     private long recipientId;
     private float amount;
+
 
     public Transaction() {
     }
