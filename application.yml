@@ -1,0 +1,18 @@
+general:
+    app-name: trader-service
+    version: 1.0.0
+    kafka-topic: trader-updates
+server:
+    port: 33400
+spring:
+    kafka:
+         consumer:
+                group-id: midas-core
+                auto-offset-reset: earliest
+                key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+                value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+         producer:
+                key-serializer: org.apache.kafka.common.serialization.StringSerializer
+                value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+         properties:
+                spring.json.trusted.packages: "*"
