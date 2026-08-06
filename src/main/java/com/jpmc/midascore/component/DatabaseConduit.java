@@ -4,6 +4,8 @@ import com.jpmc.midascore.entity.UserRecord;
 import com.jpmc.midascore.repository.UserRepository;
 import org.springframework.stereotype.Component;
 
+import java.util.Objects;
+
 @Component
 public class DatabaseConduit {
     private final UserRepository userRepository;
@@ -13,6 +15,7 @@ public class DatabaseConduit {
     }
 
     public void save(UserRecord userRecord) {
+        Objects.requireNonNull(userRecord, "userRecord must not be null");
         userRepository.save(userRecord);
     }
 
