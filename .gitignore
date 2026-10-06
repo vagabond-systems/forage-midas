@@ -33,3 +33,7 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Local scratch ###
+_to_delete/
+*.log
